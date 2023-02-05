@@ -1,0 +1,36 @@
+ScreenManager:
+    ScanScreen:
+    InfoScreen:
+
+<ScanScreen>:
+    name: 'first'
+	BoxLayout:
+		orientation: 'vertical'
+		ScanAnalyze:
+			id:preview
+			aspect_ratio: '16:9'
+			extracted_data:root.got_result
+
+		MDLabel:
+			size_hint_y: None
+			height:'130dp'
+			id:ti
+        MDFlatButton:
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            id: button
+            text: "MDRaisedButton"
+            md_bg_color: "yellow"
+            on_press:
+                root.manager.current = 'secound'
+                root.manager.transition.direction = 'right'
+
+<InfoScreen>:
+    name: 'secound'
+    BoxLayout:
+        MDLabel:
+            text: 'hej'
+        MDFlatButton:
+            text: 'back'
+            on_press:
+                root.manager.current = 'first'
+                root.manager.transition.direction = 'left'
