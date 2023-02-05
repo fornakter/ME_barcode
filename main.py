@@ -1,4 +1,4 @@
-from kivy.properties import ObjectProperty
+from kivy.properties import ObjectProperty, StringProperty
 from kivy.clock import mainthread
 from kivy.utils import platform
 from kivy.uix.screenmanager import ScreenManager, Screen
@@ -16,12 +16,13 @@ class WindowManager(ScreenManager):
 
 
 class InfoScreen(MDScreen):
-    pass
+    item_name = StringProperty("Empty")
 
 
 class ScanScreen(MDScreen):
-    def go_button(self):
-        print('jest')
+    def search_item(self):
+        print('ok')
+        self.manager.get_screen('second').item_name = self.ids.ti.text
 
     def on_kv_post(self, obj):
         self.ids.preview.connect_camera(enable_analyze_pixels=True, default_zoom=0.0)
@@ -48,10 +49,10 @@ class ScanAnalyze(Preview):
 class Me_App(MDApp):
     def build(self):
         self.theme_cls.theme_style = "Dark"
+        self.theme_cls.primary_palette = "Yellow"
         if platform == 'android':
             from android.permissions import request_permissions, Permission
             request_permissions([Permission.WRITE_EXTERNAL_STORAGE, Permission.CAMERA])  # , Permission.RECORD_AUDIO
-        return ScanScreen()
 
 
 if __name__ == '__main__':

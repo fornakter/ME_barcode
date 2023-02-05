@@ -9,28 +9,38 @@ ScreenManager:
 		ScanAnalyze:
 			id:preview
 			aspect_ratio: '16:9'
-			extracted_data:root.got_result
+			extracted_data: root.got_result
 
 		MDLabel:
 			size_hint_y: None
-			height:'130dp'
-			id:ti
-        MDFlatButton:
+			height: '130dp'
+			id: ti
+            text: 'heja'
+        MDRaisedButton:
             pos_hint: {'center_x': .5, 'center_y': .5}
             id: button
-            text: "MDRaisedButton"
+            text: "Search"
             md_bg_color: "yellow"
+            text_color: "black"
             on_press:
-                root.manager.current = 'secound'
-                root.manager.transition.direction = 'right'
+                root.manager.current = 'second'
+                root.manager.transition.direction = 'left'
+                root.search_item()
 
 <InfoScreen>:
-    name: 'secound'
+    name: 'second'
     BoxLayout:
+        orientation: 'vertical'
         MDLabel:
-            text: 'hej'
-        MDFlatButton:
+            id: item_label
+            text: root.item_name
+            halign: "center"
+        MDRaisedButton:
             text: 'back'
+            spacing: "560dp"
+            md_bg_color: "yellow"
+            text_color: "black"
+            pos_hint: {'center_x': .5, 'center_y': .5}
             on_press:
                 root.manager.current = 'first'
-                root.manager.transition.direction = 'left'
+                root.manager.transition.direction = 'right'
